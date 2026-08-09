@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JTG EXPORT</title>
+
+<style>
+:root {
+  --green-dark: #1c4b32;
+  --green: #2e7d4f;
+  --green-bright: #25D366;
+  --navy: #0a3d62;
+  --blue: #1f5fa8;
+  --purple: #6a3fa0;
+  --text: #2b2b2b;
+  --muted: #6b6b6b;
+  --border: #e6e6e6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+h1, h2, h3 { margin: 0; }
+
+a { color: inherit; }
+
+/* ---------- PLACEHOLDER IMAGE BOX ----------
+   Real photos are not ready yet, so every photo spot uses this
+   dashed placeholder. Replace the outer element's background-image
+   (or swap the whole block for an <img>) once photos are available.
+------------------------------------------------ */
+.ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: repeating-linear-gradient(
+    45deg, #f2f2f2, #f2f2f2 10px, #e9e9e9 10px, #e9e9e9 20px
+  );
+  border: 2px dashed #bbb;
+  color: #888;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 8px;
+  min-height: 100px;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+/* -------追加------ */
+.logo {
+  width: 180px;   /* 好きなサイズに変更 */
+  height: auto;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.logo-text .en {
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: var(--green-dark);
+  line-height: 1.2;
+}
+.logo-text .sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+nav a.active {
+  color: var(--green-dark);
+  border-bottom: 2px solid var(--green-dark);
+  padding-bottom: 4px;
+}
+
+.flag {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border: 1px solid #ddd;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  background: linear-gradient(120deg, #0b3d2e 0%, #145a32 45%, #1f7a4d 100%);
+  color: white;
+  padding: 90px 40px;
+  overflow: hidden;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-text { flex: 1; min-width: 280px; }
+
+.hero h1 {
+  font-size: 38px;
+  font-weight: 800;
+  max-width: 560px;
+  line-height: 1.3;
+}
+
+.hero p.lead {
+  font-size: 16px;
+  margin-top: 18px;
+  max-width: 500px;
+  opacity: 0.95;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+.checklist li {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.checklist li::before {
+  content: "✔";
+  color: #4ade80;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 280px;
+}
+.hero-image .ph {
+  height: 300px;
+  color: rgba(255,255,255,0.75);
+  background: repeating-linear-gradient(
+    45deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06) 10px,
+    rgba(255,255,255,0.12) 10px, rgba(255,255,255,0.12) 20px
+  );
+  border-color: rgba(255,255,255,0.4);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  padding: 14px 26px;
+  background: var(--green-bright);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.btn small {
+  display: block;
+  font-weight: 400;
+  font-size: 11px;
+  opacity: 0.9;
+}
+.btn.blue { background: var(--blue); }
+.btn.purple { background: var(--purple); }
+
+/* ---------- SECTION ---------- */
+.section {
+  padding: 64px 40px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section h2 {
+  margin: 8px 0 40px;
+  font-size: 26px;
+}
+
+/* ---------- GRID / CARDS ---------- */
+.grid-3 {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 250px;
+  border: 1px solid var(--border);
+  padding: 28px 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.card .num {
+  width: 28px;
+  height: 28px;
+  background: var(--green-dark);
+  color: white;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+.icon-circle svg { width: 32px; height: 32px; stroke: var(--green-dark); }
+
+.card h3 { font-size: 15px; margin-bottom: 10px; }
+.card p { font-size: 13px; color: var(--muted); }
+
+/* ---------- SERVICES ---------- */
+.service {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.service-box {
+  flex: 1;
+  min-width: 320px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.service-box .band {
+  padding: 14px 20px;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+.service-box.biz .band { background: var(--green-dark); }
+.service-box.ind .band { background: var(--blue); }
+
+.service-box .body { padding: 24px; }
+.service-box p.desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+.flow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.flow-step {
+  flex: 1;
+  min-width: 70px;
+  text-align: center;
+  font-size: 11px;
+}
+.flow-step .icon-circle {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 6px;
+}
+.flow-step .icon-circle svg { width: 20px; height: 20px; }
+
+.ind .ph { height: 180px; margin-bottom: 20px; }
+
+/* ---------- VEHICLES ---------- */
+.vehicles {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vehicle { width: 190px; text-align: center; }
+.vehicle .ph { height: 120px; }
+.vehicle p {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+/* ---------- IMPORT TYPES ---------- */
+.type-card {
+  flex: 1;
+  min-width: 260px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
+}
+
+.type-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.type-card.a .type-badge { background: var(--green-dark); }
+.type-card.b .type-badge { background: var(--blue); }
+.type-card.c .type-badge { background: var(--purple); }
+
+.type-card h3 { font-size: 14px; margin-bottom: 6px; }
+.type-card .sub { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+
+.type-card .ph { height: 90px; margin-bottom: 16px; }
+
+.type-card ul { list-style: none; padding: 0; margin: 0; font-size: 12.5px; }
+.type-card ul li { margin: 6px 0; padding-left: 20px; position: relative; }
+.type-card ul li.good::before {
+  content: "✔"; color: #2e7d4f; position: absolute; left: 0; font-weight: bold;
+}
+.type-card ul li.bad::before {
+  content: "✕"; color: #c0392b; position: absolute; left: 0; font-weight: bold;
+}
+
+/* ---------- CTA ---------- */
+.cta {
+  position: relative;
+  /*-- background: linear-gradient(120deg, #0a3d62, #14588c); --*/
+  background: linear-gradient(120deg, #0b3d2e 0%, #145a32 45%, #1f7a4d 100%);
+  color: white;
+  padding: 0;
+  overflow: hidden;
+}
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+.cta h2 { font-size: 24px; color: #f6c453; }
+.cta h3 { font-size: 22px; margin-top: 4px; }
+.cta ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.cta-image { width: 220px; }
+.cta-image .ph { height: 140px; color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.4);
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06) 10px, rgba(255,255,255,0.12) 10px, rgba(255,255,255,0.12) 20px); }
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: #111;
+  color: #ccc;
+  padding: 50px 40px 20px;
+}
+
+.footer-inner {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.footer-col { min-width: 190px; }
+.footer-col h4 {
+  color: #fff;
+  font-size: 13px;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+.footer-col p, .footer-col a {
+  font-size: 12.5px;
+  color: #aaa;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-brand .logo-mark { width: 40px; height: 40px; }
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  margin-top: 30px;
+  padding-top: 16px;
+  font-size: 11px;
+  color: #777;
+}
+
+@media (max-width: 700px) {
+  header { flex-direction: column; gap: 12px; }
+  nav { flex-wrap: wrap; justify-content: center; }
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 28px; }
+}
+/* -------追加------ */
+.footer-brand {
+  width: 100px;   /* 好きなサイズに変更 */
+  height: auto;
+}
+
+/* ---新規追加　--- */
+/* ---------- HOW IT WORKS (3-STEP CARDS) ---------- */
+.hiw-section {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hiw-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.hiw-title span {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.hiw-title::before,
+.hiw-title::after {
+  content: "";
+  height: 2px;
+  flex: 1;
+  max-width: 220px;
+  background: repeating-linear-gradient(90deg, #333 0 8px, transparent 8px 14px);
+}
+
+.hiw-grid {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.hiw-arrow {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+}
+.hiw-arrow svg { width: 26px; height: 26px; }
+
+.hiw-card {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 18px 22px 26px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.hiw-badge {
+  position: absolute;
+  top: -14px;
+  left: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.hiw-text { flex: 1; text-align: left; }
+.hiw-text h3 {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.hiw-text .sub {
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.hiw-text p {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.hiw-media {
+  flex: 0 0 90px;
+}
+.hiw-media .ph {
+  width: 90px;
+  height: 90px;
+  font-size: 10px;
+  padding: 4px;
+}
+
+@media (max-width: 900px) {
+  .hiw-grid { flex-direction: column; }
+  .hiw-arrow { transform: rotate(90deg); align-self: center; }
+  .hiw-card { padding-top: 30px; }
+}
+
+/* ---------- OUR BUSINESS ---------- */
+.business-section {
+  padding: 60px 40px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.business-top {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.business-map {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  height: 220px;
+}
+
+.business-map svg { width: 100%; height: 100%; }
+
+.map-pin-label {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.business-text {
+  flex: 1.2;
+  min-width: 320px;
+  text-align: center;
+}
+.business-text h2 {
+  font-size: 30px;
+  color: var(--green-dark);
+  margin-bottom: 14px;
+}
+.business-text p {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.business-photo {
+  margin-top: 30px;
+}
+.business-photo .ph { height: 180px; }
+
+/* ---------- ROUTE 2 (6-STEP DETAIL) ---------- */
+.route2-section {
+  padding: 20px 40px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.route2-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  padding-bottom: 34px;
+}
+
+.route2-pin-col {
+  flex: 0 0 76px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.route2-pin {
+  width: 66px;
+  height: 76px;
+  background: linear-gradient(160deg, var(--green), var(--green-dark));
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(50% 0%, 96% 18%, 96% 62%, 50% 100%, 4% 62%, 4% 18%);
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.route2-pin .label { font-size: 8px; font-weight: 700; letter-spacing: 1px; }
+.route2-pin .num { font-size: 22px; font-weight: 800; line-height: 1.1; }
+
+.route2-item:not(:last-child) .route2-pin-col::after {
+  content: "";
+  position: absolute;
+  top: 76px;
+  bottom: -34px;
+  left: 50%;
+  width: 0;
+  border-left: 2px dashed var(--green);
+}
+
+.route2-body { flex: 1; min-width: 220px; }
+.route2-body h3 { font-size: 17px; color: var(--green-dark); margin-bottom: 8px; }
+.route2-body p { font-size: 13px; color: var(--muted); }
+.route2-body .accent { color: #c0392b; font-weight: 700; }
+
+.route2-connector {
+  flex: 0 0 60px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--green) 0 6px, transparent 6px 11px);
+  position: relative;
+}
+.route2-connector::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.route2-photo { flex: 0 0 220px; }
+.route2-photo .ph { height: 130px; }
+
+@media (max-width: 800px) {
+  .route2-item { flex-wrap: wrap; }
+  .route2-connector { display: none; }
+  .route2-photo { flex: 1 1 100%; margin-left: 90px; }
+}
+/*ここまで*/
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+     <!-- <div class="ph logo-mark">LOGO</div> -->
+    <img src="images/logo.png" style="width:100%; border-radius:8px;">
+    <div class="logo-text">
+      <div class="en">JAPAN TO<br>GUYANA EXPORT</div>
+      <div class="sub">Specialized Japanese Auto Sourcing Provider</div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#" class="active">HOME</a>
+    <a href="#">Our Service</a>
+    <a href="#">HOW IT WORKS</a>
+    <a href="#">Type Cars</a>
+    <a href="#">3 Reasons to Choose Us</a>
+    <a href="#">CONTACT US</a>
+    <span class="flag">🇯🇵</span>
+    <span class="flag">🇬🇾</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Guyana's Specialized Used Car Export Company.</h1>
+      <p class="lead">We deliver high-quality Japanese used cars to Georgetown safely and securely.</p>
+      <ul class="checklist">
+        <li>For businesses and individuals.</li>
+        <li>Start importing even with no experience, no shop, and no inventory.</li>
+        <li>No annual fees. No membership fees.</li>
+      </ul>
+      <a href="https://wa.me/592XXXXXXXX" class="btn">
+        💬 <span>CONSULT NOW<br><small>Chat on WhatsApp</small></span>
+      </a>
+    </div>
+    <div class="hero-image">
+        <img src="images/hero-ship.jpg" style="width:100%; border-radius:8px;">
+    </div>
+  </div>
+</section>
+
+<!-- 新規追加　-->
+<!-- OUR BUSINESS -->
+<section class="business-section">
+  <div class="business-top">
+    <div class="business-text">
+      <h2>Our Service</h2>
+      <p>We handle everything from Japan to Guyana. You just place your order and wait — we take care of the rest. We accept orders from just one vehicle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE 2: 6-STEP DETAIL -->
+<section class="route2-section">
+
+  <div class="route2-item">
+    <div class="route2-pin-col">
+      <div class="route2-pin"><span class="label">ROUTE</span><span class="num">1</span></div>
+    </div>
+    <div class="route2-body">
+      <h3>Direct Purchase from Auto Auctions</h3>
+      <p>Over 3.5 million vehicles are listed annually at Japan's largest auto auctions. We purchase directly with <span class="accent">zero intermediary fees</span>.</p>
+    </div>
+    <div class="route2-connector"></div>
+  </div>
+
+  <div class="route2-item">
+    <div class="route2-pin-col">
+      <div class="route2-pin"><span class="label">ROUTE</span><span class="num">2</span></div>
+    </div>
+    <div class="route2-body">
+      <h3>Pre-Shipment Inspection</h3>
+      <p>Vehicles are inspected by an officially designated inspection agency approved by the Guyana Revenue Authority (GRA).</p>
+    </div>
+    <div class="route2-connector"></div>
+  </div>
+
+  <div class="route2-item">
+    <div class="route2-pin-col">
+      <div class="route2-pin"><span class="label">ROUTE</span><span class="num">3</span></div>
+    </div>
+    <div class="route2-body">
+      <h3>Export Procedures in Japan</h3>
+      <p>We handle all complex export procedures using advanced digital systems, reducing both workload and costs.</p>
+    </div>
+    <div class="route2-connector"></div>
+  </div>
+
+  <div class="route2-item">
+    <div class="route2-pin-col">
+      <div class="route2-pin"><span class="label">ROUTE</span><span class="num">4</span></div>
+    </div>
+    <div class="route2-body">
+      <h3>Vehicle Storage &amp; Inland Transport</h3>
+      <p>We store your vehicle securely and transport it to the port safely and efficiently.</p>
+    </div>
+    <div class="route2-connector"></div>
+  </div>
+
+  <div class="route2-item">
+    <div class="route2-pin-col">
+      <div class="route2-pin"><span class="label">ROUTE</span><span class="num">5</span></div>
+    </div>
+    <div class="route2-body">
+      <h3>Shipping</h3>
+      <p>We provide full support from booking to shipment. Shipping documents such as B/L will be provided after the vessel departure.</p>
+    </div>
+    <div class="route2-connector"></div>
+  </div>
+
+  <div class="route2-item" style="padding-bottom:0;">
+    <div class="route2-pin-col">
+      <div class="route2-pin"><span class="label">ROUTE</span><span class="num">6</span></div>
+    </div>
+    <div class="route2-body">
+      <h3>Arrival in Guyana</h3>
+      <p>After your vehicle arrives in Guyana, you will complete the necessary customs procedures. We can introduce trusted local partners to support you.</p>
+    </div>
+    <div class="route2-connector"></div>
+   </div>
+
+</section>
+
+
+<!-- HOW IT WORKS (3-STEP CARDS) -->
+<section class="hiw-section" id="how-it-works">
+  <div class="hiw-title"><span>HOW IT WORKS</span></div>
+
+  <div class="hiw-grid">
+
+    <div class="hiw-card">
+      <div class="hiw-badge">1</div>
+      <div class="hiw-text">
+        <h3>CHOOSE</h3>
+        <div class="sub">Vehicle Selection</div>
+        <p>Browse and select your favorite vehicles from Japanese auctions. We share photos and the auction sheet so you can check the condition and choose your car 24/7.</p>
+        <div class="hiw-tip">
+          <span class="wa-icon">💬</span>
+          <p>New to importing? Chat with us on WhatsApp and type "I need sourcing support" — our team will help you find the best vehicle.</p>
+        </div>
+      </div>
+      <div class="hiw-media">
+      </div>
+    </div>
+
+    <div class="hiw-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </div>
+
+    <div class="hiw-card">
+      <div class="hiw-badge">2</div>
+      <div class="hiw-text">
+        <h3>CONTACT</h3>
+        <div class="sub">Order &amp; Consultation</div>
+        <p>Once you find a vehicle you like, message us on WhatsApp to place your order. Feel free to ask about condition, shipping, or costs anytime.</p>
+        <div class="hiw-tip">
+          <span class="wa-icon">💬</span>
+          <p>First time ordering? Reach out to us on WhatsApp — your dedicated agent will bid on the vehicle for you.</p>
+        </div>
+      </div>
+      <div class="hiw-media">
+      </div>
+    </div>
+
+    <div class="hiw-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </div>
+
+    <div class="hiw-card">
+      <div class="hiw-badge">3</div>
+      <div class="hiw-text">
+        <h3>PAYMENT</h3>
+        <div class="sub">Payment &amp; Delivery</div>
+        <p>Make payment for the vehicle. We'll send you the key and B/L (Bill of Lading), and handle all export procedures so your car is ready for pickup at the Port of Georgetown.</p>
+        <div class="hiw-tip">
+          <span class="wa-icon">💬</span>
+          <p>Once payment is confirmed, we'll proceed straight to the export process — no extra paperwork on your end.</p>
+        </div>
+      </div>
+      <div class="hiw-media">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <div>
+      <h2>YOUR TRUSTED PARTNER</h2>
+      <h3>FOR JAPANESE USED CARS</h3>
+      <ul>
+        <li>🌐 Direct from Japan</li>
+        <li>✔️ Reliable Quality</li>
+        <li>🚢 Safe Delivery</li>
+      </ul>
+    </div>
+    <a href="https://wa.me/592XXXXXXXX" class="btn" style="margin-top:0;">
+      💬 <span>CONSULT NOW (FREE)<br><small>We reply within 24 hours!</small></span>
+    </a>
+    <div class="cta-image">
+    </div>
+  </div>
+</section>
+
+<!-- VEHICLES -->
+<section class="section">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+    <h2 style="margin:0;">Popular Vehicles in Guyana</h2>
+    <a href="#" class="btn" style="margin:0; background:var(--green-dark); padding:10px 16px; font-size:12px;">CHECK IMPORT REGULATIONS →</a>
+  </div>
+
+  <div class="vehicles" style="margin-top:30px;">
+    <div class="vehicle">
+      <img src="images/COROLA.png" style="width:100%; border-radius:8px;">
+      <p>Station Wagon</p>
+    </div>
+    <div class="vehicle">
+      <img src="images/xx" style="width:100%; border-radius:8px;">
+      <p>Sedan</p>
+    </div>
+    <div class="vehicle">
+      <img src="images/VIZEL.png" style="width:100%; border-radius:8px;">
+      <p>SUV</p>
+    </div>
+    <div class="vehicle">
+      <img src="images/HIACE.png" style="width:100%; border-radius:8px;">
+      <p>VAN</p>
+    </div>
+    <div class="vehicle">
+      <img src="images/RX.png" style="width:100%; border-radius:8px;">
+      <p>Luxury</p>
+    </div>
+  </div>
+
+  <p style="margin-top:20px; font-size:12px; color:var(--muted);">Hatchback / SUV / Sedan / Compact / Truck</p>
+  <p style="font-size:13px; font-weight:700;">We handle a wide range of popular vehicles in Guyana.</p>
+</section>
+
+<!-- REASONS -->
+<section class="section">
+  <div class="eyebrow">Why you should order from us</div>
+  <h2>3 Reasons to Choose Us</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="num">1</div>
+      <div class="icon-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+      </div>
+      <h3>EXPERTISE<br><span style="font-weight:400;font-size:11px;">(PROFESSIONAL QUALITY ASSURANCE)</span></h3>
+      <p>Our team includes experienced mechanics and researchers with automotive manufacturer backgrounds. We accurately assess each vehicle and select only the ones you can trust.</p>
+    </div>
+
+    <div class="card">
+      <div class="num">2</div>
+      <div class="icon-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l7 7-8.5 8.5a5 5 0 0 1-7-7L14 3z"/><path d="M5 21l4-4"/></svg>
+      </div>
+      <h3>AFFORDABLE PRICING<br><span style="font-weight:400;font-size:11px;">(DIRECT PURCHASE, LOWER COST)</span></h3>
+      <p>We purchase directly from Japan's largest auto auctions. By cutting out intermediaries, we reduce middle margins and offer fair prices.</p>
+    </div>
+
+    <div class="card">
+      <div class="num">3</div>
+      <div class="icon-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <h3>RELIABLE &amp; SAFE<br><span style="font-weight:400;font-size:11px;">(SPECIALIZED FOR GUYANA)</span></h3>
+      <p>Strict inspection and monitoring system with no compromises. JUMVEA guarantee ensures a full refund if the vehicle does not arrive.</p>
+    </div>
+  </div>
+
+  <a href="https://wa.me/592XXXXXXXX" class="btn">
+    💬 <span>CONSULT NOW<br><small>Chat on WhatsApp</small></span>
+  </a>
+</section>
+
+<!-- IMPORT TYPES -->
+<section class="section">
+  <h2>Choose How You Want to Import</h2>
+
+  <div class="grid-3">
+    <div class="type-card a">
+      <div class="type-badge">A</div>
+      <h3>AUCTION SELF-SELECTION</h3>
+      <div class="sub">(YOU CHOOSE)</div>
+      <img src="images/self-selection.jpg" style="width:100%; border-radius:8px;">
+      <ul>
+        <li class="good">Large reduction in intermediary fees</li>
+        <li class="good">Accurate quality with third-party inspection</li>
+        <li class="bad">Popular models may not be available for bidding</li>
+      </ul>
+    </div>
+
+    <div class="type-card b">
+      <div class="type-badge">B</div>
+      <h3>AUCTION PROPOSAL</h3>
+      <div class="sub">(WE PROPOSE)</div>
+      <img src="images/staff-proposal.jpg" style="width:100%; border-radius:8px;">
+      <ul>
+        <li class="good">Best for beginners</li>
+        <li class="good">We select cars based on your needs</li>
+        <li class="good">Large reduction in intermediary fees</li>
+        <li class="bad">Popular models may not be available for bidding</li>
+      </ul>
+    </div>
+
+    <div class="type-card c">
+      <div class="type-badge">C</div>
+      <h3>STOCK PURCHASE</h3>
+      <div class="sub">(BUY FROM INVENTORY)</div>
+      <img src="images/stock-car.jpg" style="width:100%; border-radius:8px;">
+      <ul>
+        <li class="good">Purchase available immediately if in stock</li>
+        <li class="bad">Higher prices</li>
+        <li class="bad">No third-party inspection, lower reliability</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="https://wa.me/592XXXXXXXX" class="btn purple" style="margin-top:30px;">
+    💬 <span>CONSULT NOW<br><small>Chat on WhatsApp</small></span>
+  </a>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <div>
+      <h2>YOUR TRUSTED PARTNER</h2>
+      <h3>FOR JAPANESE USED CARS</h3>
+      <ul>
+        <li>🌐 Direct from Japan</li>
+        <li>✔️ Reliable Quality</li>
+        <li>🚢 Safe Delivery</li>
+      </ul>
+    </div>
+    <a href="https://wa.me/592XXXXXXXX" class="btn" style="margin-top:0;">
+      💬 <span>CONSULT NOW (FREE)<br><small>We reply within 24 hours!</small></span>
+    </a>
+    <div class="cta-image">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">
+         <img src="images/logo.png" style="width:100%; border-radius:8px;">
+        <strong style="color:#fff; font-size:13px;">JAPAN TO<br>GUYANA EXPORT</strong>
+      </div>
+      <p>We are a specialized export company delivering high-quality Japanese used cars to Guyana safely and securely.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>SERVICE AREA</h4>
+      <p>📍 Port of Georgetown, Guyana</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>ASSOCIATION MEMBER</h4>
+      <p style="margin-top:8px;">Member of the Japan Used Motor Vehicle Exporters Association</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>FOLLOW US</h4>
+      <div style="display:flex; gap:10px;">
+        <span class="flag" style="background:#3b5998; color:#fff;">f</span>
+        <span class="flag" style="background:#25D366; color:#fff;">w</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">© 2026 Japan Quality Auto Export. All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>
