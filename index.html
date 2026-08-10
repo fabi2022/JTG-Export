@@ -57,7 +57,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 40px;
+  padding: 9px 50px; /*ヘッダー大きさ修正*/
   background: #fff;
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -75,14 +75,14 @@ header {
   gap: 12px;
 }
 
-.logo-mark {
+.logo-mark {   /* ← ロゴ円のサイズ(例: 28px) */
   width: 46px;
   height: 46px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.logo-text .en {
+.logo-text .en {   /* ← 社名の文字サイズ(例: 12px) */
   font-weight: 800;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -125,6 +125,38 @@ nav a.active {
   border: 1px solid #ddd;
 }
 
+
+/* ---------- HEADER: MOBILE ---------- */
+@media (max-width: 640px) {
+  header {
+    padding: 8px 5px;
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+  .logo { gap: 3px; }
+  .logo-mark {
+    width: 5px;
+    height: 5px;
+    font-size: 6px;
+  }
+  .logo-text .en { font-size: 12px; }
+  .logo-text .sub { font-size: 8px;  }
+  nav {
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav a {
+    font-size: 9.5px;
+    letter-spacing: 0;
+  }
+  .flag {
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+  }
+}
+ 
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
@@ -957,7 +989,7 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
       <h3>RELIABLE &amp; SAFE<br><span style="font-weight:400;font-size:11px;">(SPECIALIZED FOR GUYANA)</span></h3>
-      <p>Strict inspection and monitoring system with no compromises. JUMVEA guarantee ensures a full refund if the vehicle does not arrive.</p>
+      <p>Strict inspection and monitoring system with no compromises.</p>  <!--- JUMVEA guarantee ensures a full refund if the vehicle does not arrive. --->
     </div>
   </div>
 
